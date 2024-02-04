@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Header from "../_components/Header";
 import { ptBR } from "date-fns/locale";
 import Search from "./_components/Search/Search";
+import BookingItem from "../_components/BookinItem";
 
 export default function Home() {
   return (
@@ -17,6 +18,10 @@ export default function Home() {
       </div>
       <div className="px-5 mt-6">
         <Search />
+      </div>
+      <div className="px-5 mt-6">
+        <h2 className="text-xs mb-3 uppercase text-gray-400 font-bold">Agendamentos</h2>
+        <BookingItem/>
       </div>
     </>
   );
