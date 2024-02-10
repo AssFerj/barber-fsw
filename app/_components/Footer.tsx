@@ -7,7 +7,7 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ property }) => {
   return (
     <React.Fragment>
-      <div className='w-full bg-secondary py-6 px-5 flex gap-3 justify-evenly items-center'>
+      <div className='w-full bg-secondary py-6 px-5 flex gap-3 justify-evenly items-center absolute bottom-0 left-0'>
         <p className='text-gray-400'>
           &copy; {new Date().getFullYear()}
           {' '}All rights reserved.
