@@ -41,6 +41,7 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
                     alt={barbershop.name} 
                     style={{
                         objectFit: 'cover',
+                        objectPosition: 'center',
                     }}
                     className='opacity-75'
                 />

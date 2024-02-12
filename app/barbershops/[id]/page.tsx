@@ -1,6 +1,7 @@
 import { db } from '@/app/_lib/prisma';
 import React from 'react';
 import BarbershopInfo from './_components/barbershopInfo';
+import ServiceItem from './_components/ServiceItem';
 
 interface BarbershopDetailsPageProps {
   params: {
@@ -18,6 +19,9 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
     const barbershop = await db.barbershop.findUnique({
         where: {
             id: params.id
+        },
+        include: {
+            services: true
         }
     })
     if (!barbershop){
@@ -30,6 +34,11 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
   return (
     <React.Fragment>
         <BarbershopInfo barbershop={barbershop}/>
+        <div className="px-5 py-6 flex flex-col gap-4">
+            {barbershop.services.map((service) => 
+                <ServiceItem key={service.id} service={service} />
+            )}
+        </div>
     </React.Fragment>
   );
 };
