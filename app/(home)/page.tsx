@@ -5,14 +5,22 @@ import Search from "./_components/Search";
 import BookingItem from "../_components/BookinItem";
 import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/BarbershopItem";
+import { getServerSession } from 'next-auth'; 
+import Link from "next/link";
 
 export default async function Home() {
   const barbershop = await db.barbershop.findMany();
+  const session = await getServerSession();
   return (
     <>
       <Header/>
       <div className="px-5 pt-5">
-        <h2 className="text-xl font-bold">Olá, Assis!</h2>
+      {
+        session?.user ? 
+        <h2 className="text-xl font-bold">Olá, {session.user.name}!</h2> : 
+        <h3 className="text-md font-bold">Acesse sua conta! <Link href='http://localhost:3000/api/auth/signin/credentials' className="text-gray-400">Login</Link></h3>
+      }
+        
         <p className="capitalize text-sm">
           {format(new Date(), "EEEE',' dd 'de' MMMM", {
             locale: ptBR
