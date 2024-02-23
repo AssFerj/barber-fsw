@@ -18,7 +18,7 @@ export default async function Home() {
       {
         session?.user ? 
         <h2 className="text-xl font-bold">Olá, {session.user.name}!</h2> : 
-        <h3 className="text-md font-bold">Acesse sua conta! <Link href='http://localhost:3000/api/auth/signin/credentials' className="text-gray-400">Login</Link></h3>
+        <h3 className="text-md font-bold">Acesse sua conta!</h3>
       }
         
         <p className="capitalize text-sm">
