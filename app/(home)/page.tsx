@@ -6,7 +6,6 @@ import BookingItem from "../_components/BookinItem";
 import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/BarbershopItem";
 import { getServerSession } from 'next-auth'; 
-import Link from "next/link";
 
 export default async function Home() {
   const barbershop = await db.barbershop.findMany();

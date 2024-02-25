@@ -2,6 +2,8 @@ import { db } from '@/app/_lib/prisma';
 import React from 'react';
 import BarbershopInfo from './_components/barbershopInfo';
 import ServiceItem from './_components/ServiceItem';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/_lib/auth';
 
 interface BarbershopDetailsPageProps {
   params: {
@@ -10,6 +12,7 @@ interface BarbershopDetailsPageProps {
 }
 
 const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => {
+    const session = await getServerSession(authOptions);
     if(!params.id) {
         return (
             <h1>No id provided</h1>
@@ -36,7 +39,7 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
         <BarbershopInfo barbershop={barbershop}/>
         <div className="px-5 py-6 flex flex-col gap-4">
             {barbershop.services.map((service) => 
-                <ServiceItem key={service.id} service={service} />
+                <ServiceItem key={service.id} service={service} isAuthenticated={!!session?.user} />
             )}
         </div>
     </React.Fragment>
